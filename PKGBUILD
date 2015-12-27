@@ -52,10 +52,10 @@ makedepends=(
 # unlisted dependencies?
 #'pkg-config' # for /usr/bin/pkg-config ('ftgl' ?)
 'libxml2' # for /usr/bin/xml2-config
-#'ccache') # for ccache=ON
+#'ccache' # but ccache=OFF
 )
 depends=('gsl' 'desktop-file-utils' 'gtk-update-icon-cache' 'shared-mime-info')
-provides=$_pkgid
+provides=${pkgname,,}
 install='root.install'
 options=('!emptydirs')
 source=("ftp://root.cern.ch/root/root_v${pkgver}.source.tar.gz"
