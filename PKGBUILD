@@ -52,17 +52,21 @@ makedepends=(
 # unlisted dependencies?
 #'pkg-config' # for /usr/bin/pkg-config ('ftgl' ?)
 'libxml2' # for /usr/bin/xml2-config
-#'ccache' # but ccache=OFF
+'ccache' # with ccache=OFF
+'giflib'
+'jupyter'
 )
 depends=('gsl' 'desktop-file-utils' 'gtk-update-icon-cache' 'shared-mime-info')
 provides=${pkgname,,}
 install='root.install'
 options=('!emptydirs')
-source=("ftp://root.cern.ch/root/root_v${pkgver}.source.tar.gz"
+source=(
+"ftp://root.cern.ch/root/root_v${pkgver}.source.tar.gz"
 'ROOT.desktop'
 'icons.tar.gz'
 'ROOT.sh'
-'ROOT.xml')
+'ROOT.xml'
+'settings.cmake')
 
 md5sums=(
 '65675a1dbaa4810df0479dbcf62f0ba0' # source.tar.gz
@@ -70,30 +74,19 @@ md5sums=(
 '14286a57d602bf3a2d9f6131f5a38514' # icons.tar.gz
 '77e03c6b8b634efa6c8cbba88d32516f' # ROOT.sh
 '76794a239d7bc924f88eac357b01d5c8' # ROOT.xml
+'bd6446cde2e83a84a6ad678aa7272bf2' # settings.cmake
 )
 
 build() {
-	local _ncores=$(($(lscpu -p=core | tail -n 1)+1))
+	cmake -C $srcdir/settings.cmake $srcdir/$_pkgid
+#	cmake $srcdir/$_pkgid
 
-	[ -d $srcdir/build ] || mkdir $srcdir/build
-	cd $srcdir/build
-
-	local _buildopt=""
-	while read line
-	do
-		if [ $line ]
-		then
-			_buildopt+="-D$line "
-		fi
-	done < $startdir/options
-	echo $_buildopt	
-	cmake $srcdir/$_pkgid $_buildopt
-
-	make -j$_ncores
+	make ${MAKEFLAGS}
 }
 
 package() {
-	cd $srcdir/build
+#	cd $srcdir/${pkgname,,}/build
+	cd $srcdir
 
 	make DESTDIR=$pkgdir install
 
