@@ -7,15 +7,13 @@ arch=('i686' 'x86_64')
 url='http://root.cern.ch'
 license=('LGPL2.1')
 depends=('gsl' )
-optdepends=('pythia: bindings for analisys of generated events' 'python2: PyROOT bindings')
+optdepends=('pythia: analisys of Monte Carlo generated events' 'python2: PyROOT support' 'jupyter: ROOT notebook support')
 makedepends=(
-# not listed building tools
-'make'
 'cmake' 
-# marked as building dependencies on https://root.cern.ch/build-prerequisites
+################################################################################
+# marked as building dependencies on https://root.cern.ch/build-prerequisites ##
+################################################################################
 'git' # to download builtin library source code
-'gcc' 
-'binutils' 
 'lsb-release' 
 'libxpm' 
 'libxft' 
@@ -23,7 +21,9 @@ makedepends=(
 'libx11' 
 'libpng' 
 'libjpeg-turbo'
-# marked as optional dependencies on https://root.cern.ch/build-prerequisites
+#################################################################################
+## marked as optional dependencies on https://root.cern.ch/build-prerequisites ##
+#################################################################################
 #'gcc-fortran' # for /usr/bin/gfortran - but fortran=OFF
 #'openssl' # for /usr/include/openssl/pem.h and /usr/lib/libssl.so and /usr/lib/libcrypto.so
 #'fftw' # for /usr/include/fftw3.h and for /usr/lib/libfftw3.so -- builtin_fftw3=OFF but fftw3=ON
@@ -35,7 +35,9 @@ makedepends=(
 'xz' # unlisted optional dependency -- for builtin_lzma=OFF
 'gsl' # unlisted optional dependency -- for builtin_gsl=OFF e gsl_shared=ON
 #'cfitsio' # for /usr/include/fitsio2.h and for /usr/lib/libcfitsio.so -- for cfitsio=OFF but fitsio=OFF
-# NOTE ON LLVM: look at https://root.cern.ch/phpBB3/viewtopic.php?t=19401
+#############################################################################
+## NOTE ON LLVM: look at https://root.cern.ch/phpBB3/viewtopic.php?t=19401 ##
+#############################################################################
 #'llvm' # unlisted optional dependency -- for builtin_llvm=OFF <-- BROKEN!! 
 #'llvm-libs' # unlisted optional dependency -- for builtin_llvm=OFF <-- BROKEN!!
 'intel-tbb' # unlisted optional dependency -- for builtin_tbb=OFF and tbb=ON
@@ -52,9 +54,8 @@ makedepends=(
 # unlisted dependencies?
 #'pkg-config' # for /usr/bin/pkg-config ('ftgl' ?)
 'libxml2' # for /usr/bin/xml2-config
-'ccache' # with ccache=OFF
+'ccache' # with ccache=ON
 'giflib'
-'jupyter'
 )
 depends=('gsl' 'desktop-file-utils' 'gtk-update-icon-cache' 'shared-mime-info')
 provides=${pkgname,,}
@@ -79,13 +80,11 @@ md5sums=(
 
 build() {
 	cmake -C $srcdir/settings.cmake $srcdir/$_pkgid
-#	cmake $srcdir/$_pkgid
 
 	make ${MAKEFLAGS}
 }
 
 package() {
-#	cd $srcdir/${pkgname,,}/build
 	cd $srcdir
 
 	make DESTDIR=$pkgdir install
