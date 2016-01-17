@@ -1,6 +1,6 @@
 pkgname=ROOT
 pkgver=6.06.00
-_pkgid=${pkgname,,}-$pkgver
+_pkgid=$pkgname-$pkgver
 pkgrel=1
 pkgdesc='C++ data analysis framework and interpreter from CERN.'
 arch=('i686' 'x86_64')
@@ -10,9 +10,9 @@ depends=('gsl' )
 optdepends=('pythia: analisys of Monte Carlo generated events' 'python2: PyROOT support' 'jupyter: ROOT notebook support')
 makedepends=(
 'cmake' 
-################################################################################
-# marked as building dependencies on https://root.cern.ch/build-prerequisites ##
-################################################################################
+#################################################################################
+## marked as building dependencies on https://root.cern.ch/build-prerequisites ##
+#################################################################################
 'git' # to download builtin library source code
 'lsb-release' 
 'libxpm' 
@@ -58,7 +58,6 @@ makedepends=(
 'giflib'
 )
 depends=('gsl' 'desktop-file-utils' 'gtk-update-icon-cache' 'shared-mime-info')
-provides=${pkgname,,}
 install='root.install'
 options=('!emptydirs')
 source=(
