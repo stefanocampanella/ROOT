@@ -1,6 +1,6 @@
 pkgname=ROOT
 pkgver=6.06.00
-_pkgid=$pkgname-$pkgver
+_pkgid=${pkgname,,}-$pkgver
 pkgrel=1
 pkgdesc='C++ data analysis framework and interpreter from CERN.'
 arch=('i686' 'x86_64')
