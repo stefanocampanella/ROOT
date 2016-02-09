@@ -1,3 +1,4 @@
+# Maintainer: Stefano Campanella <stefanocampanella1729@gmail.com>
 pkgname=root
 pkgver=6.06.00
 _pkgid=$pkgname-$pkgver
@@ -9,17 +10,17 @@ license=('LGPL2.1')
 depends=('gsl' )
 optdepends=('pythia: analisys of Monte Carlo generated events' 'python2: PyROOT support' 'jupyter: ROOT notebook support')
 makedepends=(
-'cmake' 
+'cmake'
 #################################################################################
 ## marked as building dependencies on https://root.cern.ch/build-prerequisites ##
 #################################################################################
 'git' # to download builtin library source code
-'lsb-release' 
-'libxpm' 
-'libxft' 
-'libxext' 
-'libx11' 
-'libpng' 
+'lsb-release'
+'libxpm'
+'libxft'
+'libxext'
+'libx11'
+'libpng'
 'libjpeg-turbo'
 #################################################################################
 ## marked as optional dependencies on https://root.cern.ch/build-prerequisites ##
@@ -38,7 +39,7 @@ makedepends=(
 #############################################################################
 ## NOTE ON LLVM: look at https://root.cern.ch/phpBB3/viewtopic.php?t=19401 ##
 #############################################################################
-#'llvm' # unlisted optional dependency -- for builtin_llvm=OFF <-- BROKEN!! 
+#'llvm' # unlisted optional dependency -- for builtin_llvm=OFF <-- BROKEN!!
 #'llvm-libs' # unlisted optional dependency -- for builtin_llvm=OFF <-- BROKEN!!
 'intel-tbb' # unlisted optional dependency -- for builtin_tbb=OFF and tbb=ON
 #'libmariadbclient' # for /usr/bin/mysql_config (or ? 'libmysqlclient') but mysql=OFF
@@ -54,7 +55,7 @@ makedepends=(
 # unlisted dependencies?
 #'pkg-config' # for /usr/bin/pkg-config ('ftgl' ?)
 'libxml2' # for /usr/bin/xml2-config
-'ccache' # with ccache=ON
+# 'ccache' # with ccache=OFF
 'giflib'
 )
 depends=('gsl' 'desktop-file-utils' 'gtk-update-icon-cache' 'shared-mime-info')
@@ -74,7 +75,7 @@ md5sums=(
 '14286a57d602bf3a2d9f6131f5a38514' # icons.tar.gz
 '77e03c6b8b634efa6c8cbba88d32516f' # ROOT.sh
 '76794a239d7bc924f88eac357b01d5c8' # ROOT.xml
-'bd6446cde2e83a84a6ad678aa7272bf2' # settings.cmake
+'e2dc0f507657d1ffee350f3cdd5fe644' # settings.cmake
 )
 
 build() {
@@ -98,4 +99,3 @@ package() {
 	install -d $pkgdir/etc/ld.so.conf.d
 	echo '/usr/lib/root' > $pkgdir/etc/ld.so.conf.d/root.conf
 }
-
