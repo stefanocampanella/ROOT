@@ -8,7 +8,7 @@ arch=('i686' 'x86_64')
 url='http://root.cern.ch'
 license=('LGPL2.1')
 depends=('gsl' )
-optdepends=('pythia: analisys of Monte Carlo generated events' 'python2: PyROOT support' 'jupyter: ROOT notebook support')
+optdepends=('pythia: analisys of Monte Carlo generated events' 'python2: PyROOT support' 'jupyter: ROOT notebook support' 'ipython2: ROOT notebook support')
 makedepends=(
 'cmake'
 #################################################################################

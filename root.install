@@ -1,8 +1,9 @@
 post_install() {
 	update-desktop-database -q
 	update-mime-database /usr/share/mime 
-	gtk-update-icon-cache -q -t -f usr/share/icons/hicolor
+	gtk-update-icon-cache -q -t -f /usr/share/icons/hicolor
 	ldconfig
+	echo "The PYTHONPATH environment variable is exported in /etc/profile.d/ROOT.sh . This script is automatically loaded at login, therefore to import the ROOT module in python you should run this script before, or logout and login."
 }
 
 post_upgrade() {
