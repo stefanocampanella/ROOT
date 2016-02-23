@@ -75,7 +75,7 @@ md5sums=(
 '14286a57d602bf3a2d9f6131f5a38514' # icons.tar.gz
 '77e03c6b8b634efa6c8cbba88d32516f' # ROOT.sh
 '76794a239d7bc924f88eac357b01d5c8' # ROOT.xml
-'e2dc0f507657d1ffee350f3cdd5fe644' # settings.cmake
+'7982372e4914ca3777fd8d02aef3de3f' # settings.cmake
 )
 
 build() {
