@@ -1,6 +1,6 @@
 # Maintainer: Stefano Campanella <stefanocampanella1729@gmail.com>
 pkgname=root
-pkgver=6.06.00
+pkgver=6.06.02
 _pkgid=$pkgname-$pkgver
 pkgrel=1
 pkgdesc='C++ data analysis framework and interpreter from CERN.'
@@ -8,7 +8,7 @@ arch=('i686' 'x86_64')
 url='http://root.cern.ch'
 license=('LGPL2.1')
 depends=('gsl' )
-optdepends=('pythia: analisys of Monte Carlo generated events' 'python2: PyROOT support' 'jupyter: ROOT notebook support' 'ipython2: ROOT notebook support')
+optdepends=('pythia: analisys of Monte Carlo generated events' 'python2: PyROOT support' 'jupyter: ROOT notebook support' 'ipython2-notebook: ROOT notebook support')
 makedepends=(
 'cmake'
 #################################################################################
@@ -69,14 +69,12 @@ source=(
 'ROOT.xml'
 'settings.cmake')
 
-md5sums=(
-'65675a1dbaa4810df0479dbcf62f0ba0' # source.tar.gz
-'d9bb5d9272ef156744af8da8c1b56053' # ROOT.desktop
-'14286a57d602bf3a2d9f6131f5a38514' # icons.tar.gz
-'77e03c6b8b634efa6c8cbba88d32516f' # ROOT.sh
-'76794a239d7bc924f88eac357b01d5c8' # ROOT.xml
-'5f431b4ef9c88bc8c8e627d20c5b4d56' # settings.cmake
-)
+md5sums=('e9b8b86838f65b0a78d8d02c66c2ec55'
+         'd9bb5d9272ef156744af8da8c1b56053'
+         '14286a57d602bf3a2d9f6131f5a38514'
+         '77e03c6b8b634efa6c8cbba88d32516f'
+         '76794a239d7bc924f88eac357b01d5c8'
+         '07db680fbc9a9272e72400c31b00a201')
 
 build() {
 	cmake -C $srcdir/settings.cmake $srcdir/$_pkgid
