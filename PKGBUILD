@@ -74,7 +74,7 @@ md5sums=('e9b8b86838f65b0a78d8d02c66c2ec55'
          '14286a57d602bf3a2d9f6131f5a38514'
          '77e03c6b8b634efa6c8cbba88d32516f'
          '76794a239d7bc924f88eac357b01d5c8'
-         '07db680fbc9a9272e72400c31b00a201')
+         'a4288f975f926451f1157d5ed7134baa')
 
 build() {
 	cmake -C $srcdir/settings.cmake $srcdir/$_pkgid
