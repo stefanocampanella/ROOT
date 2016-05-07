@@ -8,7 +8,7 @@ arch=('i686' 'x86_64')
 url='http://root.cern.ch'
 license=('LGPL2.1')
 depends=('gsl' )
-optdepends=('pythia: analisys of Monte Carlo generated events' 'python2: PyROOT support' 'jupyter: ROOT notebook support' 'ipython2-notebook: ROOT notebook support')
+optdepends=('python2: PyROOT support' 'jupyter: ROOT notebook support' 'ipython2-notebook: ROOT notebook support')
 makedepends=(
 'cmake'
 #################################################################################
@@ -45,7 +45,6 @@ makedepends=(
 #'libmariadbclient' # for /usr/bin/mysql_config (or ? 'libmysqlclient') but mysql=OFF
 'mesa' # for /usr/include/GL/gl.h and for /usr/lib/libGL.so -- for opengl=ON (OpenGL support, requires libGL and libGLU)
 'mesa-libgl' # unlisted optional dependency -- for opengl=ON (OpenGL support, requires libGL and libGLU)
-'pythia' # unlisted optional dependency -- for pythia8=ON
 'python2' # for /usr/include/python2.7/Python.h and for /usr/lib[64]/libpython2.7.so -- for python=ON
 #'qt4' # for /usr/include/Qt/qglobal.h and for /usr/lib[64]/libQtCore.so -- but qt=OFF and qtgsi=OFF
 #'ssl' # for /usr/include/openssl/pem.h and /usr/lib/libssl.so and /usr/lib/libcrypto.so -- but ssl=OFF
@@ -74,7 +73,7 @@ md5sums=('e9b8b86838f65b0a78d8d02c66c2ec55'
          '14286a57d602bf3a2d9f6131f5a38514'
          '77e03c6b8b634efa6c8cbba88d32516f'
          '76794a239d7bc924f88eac357b01d5c8'
-         'a4288f975f926451f1157d5ed7134baa')
+         'b530c1988be1b50c6696616a47613d24')
 
 build() {
 	cmake -C $srcdir/settings.cmake $srcdir/$_pkgid
