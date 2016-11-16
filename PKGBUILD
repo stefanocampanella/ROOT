@@ -1,6 +1,6 @@
 # Maintainer: Stefano Campanella <stefanocampanella1729@gmail.com>
 pkgname=root
-pkgver=6.06.08
+pkgver=6.08.00
 _pkgid=$pkgname-$pkgver
 pkgrel=1
 pkgdesc='C++ data analysis framework and interpreter from CERN.'
@@ -8,7 +8,7 @@ arch=('i686' 'x86_64')
 url='http://root.cern.ch'
 license=('LGPL2.1')
 depends=('gsl' )
-optdepends=('python2: PyROOT support' 'jupyter: ROOT notebook support' 'ipython2-notebook: ROOT notebook support')
+optdepends=('jupyter: ROOT notebook support' 'ipython2-notebook: ROOT notebook support')
 makedepends=(
 'cmake'
 #################################################################################
@@ -57,6 +57,9 @@ makedepends=(
 'libxml2' # for /usr/bin/xml2-config
 # 'ccache' # with ccache=OFF
 'giflib'
+'unuran'
+'libafterimage'
+'gl2ps'
 )
 depends=('gsl' 'desktop-file-utils' 'gtk-update-icon-cache' 'shared-mime-info')
 install='root.install'
@@ -69,12 +72,12 @@ source=(
 'ROOT.xml'
 'settings.cmake')
 
-md5sums=('6ef0fe9bd9f88f3ce8890e3651142ee4'
+md5sums=('8462a530d27fa5ca7718ea4437632c3c'
          'd9bb5d9272ef156744af8da8c1b56053'
          '14286a57d602bf3a2d9f6131f5a38514'
          '77e03c6b8b634efa6c8cbba88d32516f'
          '76794a239d7bc924f88eac357b01d5c8'
-         'e23859ea51baec619602dd35076f48b8')
+         '47115abfcb5d7b8a3298474c4175db59')
 
 build() {
 	cmake -C $srcdir/settings.cmake $srcdir/$_pkgid
