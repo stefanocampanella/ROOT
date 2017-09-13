@@ -1,6 +1,6 @@
 # Maintainer: Stefano Campanella <stefanocampanella1729@gmail.com>
 pkgname=root
-pkgver=6.08.00
+pkgver=6.10.04
 _pkgid=$pkgname-$pkgver
 pkgrel=1
 pkgdesc='C++ data analysis framework and interpreter from CERN.'
@@ -8,7 +8,8 @@ arch=('i686' 'x86_64')
 url='http://root.cern.ch'
 license=('LGPL2.1')
 depends=('gsl' )
-optdepends=('jupyter: ROOT notebook support' 'ipython2-notebook: ROOT notebook support')
+#optdepends=('jupyter: ROOT notebook support' 'ipython2-notebook: ROOT notebook support')
+optdepends=('jupyter: ROOT notebook support' 'ipython-notebook: ROOT notebook support' 'jupyter-metakernel')
 makedepends=(
 'cmake'
 #################################################################################
@@ -45,8 +46,10 @@ makedepends=(
 #'libmariadbclient' # for /usr/bin/mysql_config (or ? 'libmysqlclient') but mysql=OFF
 'mesa' # for /usr/include/GL/gl.h and for /usr/lib/libGL.so -- for opengl=ON (OpenGL support, requires libGL and libGLU)
 'mesa-libgl' # unlisted optional dependency -- for opengl=ON (OpenGL support, requires libGL and libGLU)
-'python2' # for /usr/include/python2.7/Python.h and for /usr/lib[64]/libpython2.7.so -- for python=ON
-'python2-numpy' # unlisted dependency?
+#'python2' # for /usr/include/python2.7/Python.h and for /usr/lib[64]/libpython2.7.so -- for python=ON
+'python' # for /usr/include/python2.7/Python.h and for /usr/lib[64]/libpython2.7.so -- for python=ON
+#'python2-numpy' # unlisted dependency?
+'python-numpy' # unlisted dependency?
 #'qt4' # for /usr/include/Qt/qglobal.h and for /usr/lib[64]/libQtCore.so -- but qt=OFF and qtgsi=OFF
 #'ssl' # for /usr/include/openssl/pem.h and /usr/lib/libssl.so and /usr/lib/libcrypto.so -- but ssl=OFF
 #'graphviz' # for /usr/include/graphviz/gvc.h and for /usr/lib/libgvc.so -- but gviz=OFF
@@ -57,11 +60,10 @@ makedepends=(
 'libxml2' # for /usr/bin/xml2-config
 # 'ccache' # with ccache=OFF
 'giflib'
-'unuran'
-'libafterimage'
+#'unuran' # with builtin_unuran=OFF
 'gl2ps'
 )
-depends=('gsl' 'desktop-file-utils' 'gtk-update-icon-cache' 'shared-mime-info')
+depends=('gsl' 'desktop-file-utils' 'gtk-update-icon-cache' 'shared-mime-info') # 'libafterimage')
 install='root.install'
 options=('!emptydirs')
 source=(
@@ -72,12 +74,12 @@ source=(
 'ROOT.xml'
 'settings.cmake')
 
-md5sums=('8462a530d27fa5ca7718ea4437632c3c'
+md5sums=('e6e54fd2b5ebc2610c9aa0d396b7522d'
          'd9bb5d9272ef156744af8da8c1b56053'
          '14286a57d602bf3a2d9f6131f5a38514'
          '77e03c6b8b634efa6c8cbba88d32516f'
          '76794a239d7bc924f88eac357b01d5c8'
-         '47115abfcb5d7b8a3298474c4175db59')
+         '1a343282cecadb5c7f56405d7ceb5565')
 
 build() {
 	cmake -C $srcdir/settings.cmake $srcdir/$_pkgid
