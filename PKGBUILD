@@ -1,21 +1,24 @@
 # Maintainer: Stefano Campanella <stefanocampanella1729@gmail.com>
 pkgname=root
-pkgver=6.10.06
+pkgver=6.12.04
 _pkgid=$pkgname-$pkgver
 pkgrel=1
 pkgdesc='C++ data analysis framework and interpreter from CERN.'
 arch=('i686' 'x86_64')
 url='http://root.cern.ch'
 license=('LGPL2.1')
-depends=('gsl' )
+depends=(
+)
 #optdepends=('jupyter: ROOT notebook support' 'ipython2-notebook: ROOT notebook support')
 optdepends=('jupyter: ROOT notebook support' 'ipython-notebook: ROOT notebook support' 'jupyter-metakernel')
-makedepends=(
-'cmake'
+makedepends=( 'cmake' 'git')
+depends=(
 #################################################################################
 ## marked as building dependencies on https://root.cern.ch/build-prerequisites ##
 #################################################################################
-'git' # to download builtin library source code
+'gsl' # unlisted optional dependency -- for builtin_gsl=OFF e gsl_shared=ON
+'gl2ps'
+'ftgl' # unlisted optional dependency -- for builtin_ftgl=OFF
 'lsb-release'
 'libxpm'
 'libxft'
@@ -29,13 +32,11 @@ makedepends=(
 #'gcc-fortran' # for /usr/bin/gfortran - but fortran=OFF
 #'openssl' # for /usr/include/openssl/pem.h and /usr/lib/libssl.so and /usr/lib/libcrypto.so
 #'fftw' # for /usr/include/fftw3.h and for /usr/lib/libfftw3.so -- builtin_fftw3=OFF but fftw3=ON
-'ftgl' # unlisted optional dependency -- for builtin_ftgl=OFF
 'freetype2' # for builtin_freetype=OFF
 'glew' # for /usr/include/GL/glew.h and for /usr/lib/libGLEW.so -- for builtin_glew=OFF
 'pcre' # for /usr/bin/pcre-config -- for builtin_pcre=OFF
 'zlib' # unlisted optional dependency -- for builtin_zlib=OFF
 'xz' # unlisted optional dependency -- for builtin_lzma=OFF
-'gsl' # unlisted optional dependency -- for builtin_gsl=OFF e gsl_shared=ON
 #'cfitsio' # for /usr/include/fitsio2.h and for /usr/lib/libcfitsio.so -- for cfitsio=OFF but fitsio=OFF
 #############################################################################
 ## NOTE ON LLVM: look at https://root.cern.ch/phpBB3/viewtopic.php?t=19401 ##
@@ -61,9 +62,8 @@ makedepends=(
 # 'ccache' # with ccache=OFF
 'giflib'
 #'unuran' # with builtin_unuran=OFF
-'gl2ps'
 )
-depends=('gsl' 'desktop-file-utils' 'gtk-update-icon-cache' 'shared-mime-info') # 'libafterimage')
+depends=('gsl' 'desktop-file-utils' 'gtk-update-icon-cache' 'shared-mime-info')
 install='root.install'
 options=('!emptydirs')
 source=(
@@ -74,7 +74,7 @@ source=(
 'ROOT.xml'
 'settings.cmake')
 
-md5sums=('3a5f846883822e6d618cc4bd869b2ece'
+md5sums=('48f5044e9588d94fb2d79389e48e1d73'
          'd9bb5d9272ef156744af8da8c1b56053'
          '14286a57d602bf3a2d9f6131f5a38514'
          '77e03c6b8b634efa6c8cbba88d32516f'
@@ -84,7 +84,7 @@ md5sums=('3a5f846883822e6d618cc4bd869b2ece'
 build() {
 	cmake -C $srcdir/settings.cmake $srcdir/$_pkgid
 
-	make ${MAKEFLAGS}
+	make ${MAKEFLAGS} -j4
 }
 
 package() {
